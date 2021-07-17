@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/kategori/data', [KategoriController::class, 'data']);
+    Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
     Route::resource('/kategori', KategoriController::class);
 });
