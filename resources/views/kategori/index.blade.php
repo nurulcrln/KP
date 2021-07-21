@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Kategori
+    Kategori1
 @endsection
 
 @section('breadcrumb')
@@ -50,6 +50,10 @@
     function addForm(){
         $('#modal-form').modal('show');
         $('#modal-form .modal-title').text('Add Kategori');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=nama_kategori]').focus();
     }
     
 </script>
