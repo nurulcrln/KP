@@ -20,6 +20,11 @@
         </li>
         <li class="header">PRODUK</li>
         <li>
+          <a href="#">
+            <i class="fa fa-cubes"></i> <span>Supplier</span>
+          </a>
+        </li>
+        <li>
           <a href="{{ route('kategori.index')}}">
             <i class="fa fa-cube"></i> <span>Kategori</span>
           </a>
