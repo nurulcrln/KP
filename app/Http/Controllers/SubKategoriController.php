@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SubKategori;
 use App\Models\Kategori;
 
-class KategoriController extends Controller
+class SubKategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,21 +15,22 @@ class KategoriController extends Controller
      */
     public function index()
     { 
-        return view('kategori.index');
+        $kategori = Kategori::all()->pluck('nama_kategori', 'id_kategori');
+        return view('subkategori.index', compact('kategori'));
     }
 
     public function data()
     {
-        $kategori = Kategori::orderBy('id_kategori', 'desc')->get();
+        $subkategori = SubKategori::orderBy('id_subkategori', 'desc')->get();
 
         return datatables()
-            ->of($kategori)
+            ->of($subkategori)
             ->addIndexColumn()
-            ->addColumn('aksi', function ($kategori){
+            ->addColumn('aksi', function ($subkategori){
                 return '
                 <div class="btn-group">
-                    <button onclick="editForm(`'. route('kategori.update', $kategori->id_kategori) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-edit"></i></button> 
-                    <button onclick="deleteData(`'. route('kategori.destroy', $kategori->id_kategori) .'`)"class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button> 
+                    <button onclick="editForm(`'. route('subkategori.update', $subkategori->id_subkategori) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-edit"></i></button> 
+                    <button onclick="deleteData(`'. route('subkategori.destroy', $subkategori->id_subkategori) .'`)"class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button> 
                 </div>
                 ';
             })
@@ -54,9 +56,11 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $kategori = new Kategori();
-        $kategori-> nama_kategori = $request->nama_kategori;
-        $kategori->save();
+        // $subkategori = SubKategori::create($request->all());
+        $subkategori = new SubKategori();
+        $subkategori-> id_kategori = $request->id_kategori;
+        $subkategori-> sub_kategori = $request->sub_kategori;
+        $subkategori->save();
 
         return response()->json('Data berhasil disimpan', 200);
     }
@@ -69,9 +73,9 @@ class KategoriController extends Controller
      */
     public function show($id)
     {
-        $kategori = Kategori::find($id);
+        $subkategori = SubKategori::find($id);
 
-        return response()->json($kategori);
+        return response()->json($subkategori);
     }
 
     /**
@@ -94,9 +98,10 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kategori = Kategori::find($id);
-        $kategori-> nama_kategori = $request->nama_kategori;
-        $kategori->update();
+        $subkategori = SubKategori::find($id);
+        $subkategori-> id_kategori = $request->id_kategori;
+        $subkategori-> sub_kategori = $request->sub_kategori;
+        $subkategori->update();
 
         return response()->json('Data berhasil disimpan', 200);
     }
@@ -109,8 +114,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $kategori = Kategori::find($id);
-        $kategori->delete();
+        $subkategori = SubKategori::find($id);
+        $subkategori->delete();
 
         return response(null, 204);
     }

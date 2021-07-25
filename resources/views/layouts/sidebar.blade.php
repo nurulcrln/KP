@@ -30,7 +30,12 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{ route('subkategori.index')}}">
+            <i class="fa fa-cube"></i> <span>Sub Kategori</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('produk.index')}}">
             <i class="fa fa-cubes"></i> <span>Item</span>
           </a>
         </li>
@@ -57,7 +62,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Add Penjualan</a></li>
+
+            <li><<a href="{{ route('penjualan.index')}}"><i class="fa fa-circle-o"></i> Add Penjualan</a></li>
             <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Riwayat Penjualan</a></li>
           </ul>
         </li>

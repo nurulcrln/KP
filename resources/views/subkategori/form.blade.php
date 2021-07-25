@@ -11,9 +11,21 @@
             </div>
             <div class="modal-body">
                 <div class="form-group row">
-                    <label for="nama_kategori" class="col-md-3 col-md-offset-1 control-label">Kategori</label>
+                    <label for="id_kategori" class="col-md-3 col-md-offset-1 control-label">Kategori</label>
                     <div class="col-md-6">
-                        <input type="text" name="nama_kategori" id="id_kategori" class="form-control" required autofocus>
+                    <select name="id_kategori" id="id_kategori" class="form-control">
+                            <option value="">Pilih Kategori</option>
+                            @foreach ($kategori as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                        <span class="help-block with-errors"></span> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                <label for="sub_kategori" class="col-md-3 col-md-offset-1 control-label">Sub Kategori</label>
+                    <div class="col-md-6">
+                        <input type="text" name="sub_kategori" id="id_subkategori" class="form-control" required autofocus>
                         <span class="help-block with-errors"></span> 
                     </div>
                 </div>
