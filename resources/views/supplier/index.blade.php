@@ -20,8 +20,10 @@
                 <table class="table table-stiped table-bordered">
                     <thead>
                         <th width="5%">No</th>
-                        <th>Kategori</th>
-                        <th>Sub Kategori</th>
+                        <th>Nama Supplier</th>
+                        <th>No. Telp</th>
+                        <th>Alamat</th>
+                        <th>Deskripsi</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -41,12 +43,14 @@
             processing: true,
             autoWidth: false,
             ajax: {
-                url: '{{ route('kategori.data')}}',
+                url: '{{ route('supplier.data')}}',
             },
             columns: [
             {data: 'DT_RowIndex', searchable: false, sortable: false},
-            {data: 'nama_kategori'}, 
-            {data: 'sub_kategori'},
+            {data: 'name'}, 
+            {data: 'phone'},
+            {data: 'address'},
+            {data: 'description'},
             {data: 'aksi', searchable: false, sortable: false},
             ]
         });
@@ -68,29 +72,41 @@
 
     function addForm(url){
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Add Kategori');
+        $('#modal-form .modal-title').text('Add Supplier');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=nama_kategori]').focus();
+        $('#modal-form [name=name]').focus();
         $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=sub_kategori]').focus();
+        $('#modal-form [name=phone]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=address]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=description]').focus();
     }
 
     function editForm(url){
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Add Kategori');
+        $('#modal-form .modal-title').text('Edit Kategori');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('put');
-        $('#modal-form [name=nama_kategori]').focus();
+        $('#modal-form [name=name]').focus();
         $('#modal-form [name=_method]').val('put');
-        $('#modal-form [name=sub_kategori]').focus();
+        $('#modal-form [name=phone]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=address]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=description]').focus();
+
         $.get(url)
             .done((response)=>{
-                $('#modal-form [name=nama_kategori]').val(response.nama_kategori);
+                $('#modal-form [name=name]').val(response.name);
+                $('#modal-form [name=phone]').val(response.phone);
+                $('#modal-form [name=address]').val(response.address);
+                $('#modal-form [name=description]').val(response.description);
             })
             .fail((errors)=>{
                 alert('Tidak dapat menampilkan data');

@@ -22,7 +22,7 @@
                         <th width="5%">No</th>
                         <th>Kode Produk</th>
                         <th>Nama Produk</th>
-                        <th>Kategori</th>
+                        <th>Sub Kategori</th>
                         <th>Stock</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
@@ -49,11 +49,12 @@
             {data: 'DT_RowIndex', searchable: false, sortable: false},
             {data: 'kode_produk'}, 
             {data: 'nama_produk'},
-            {data: 'kategori'},
+            {data: 'sub_kategori'},
             {data: 'stock'},
             {data: 'aksi', searchable: false, sortable: false},
             ]
         });
+
         
         $('#modal-form').validator().on('submit', function (e){
             if (! e.preventDefault()){
@@ -77,9 +78,17 @@
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=nama_kategori]').focus();
+        $('#modal-form [name=kode_produk]').focus();
         $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=sub_kategori]').focus();
+        $('#modal-form [name=nama_produk]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=id_kategori]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=id_subkategori]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=id_supplier]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=stock]').focus();
     }
 
     function editForm(url){
@@ -88,14 +97,26 @@
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
-        $('#modal-form [name=_method]').val('put');
-        $('#modal-form [name=nama_kategori]').focus();
-        $('#modal-form [name=_method]').val('put');
-        $('#modal-form [name=sub_kategori]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=kode_produk]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=nama_produk]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=id_kategori]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=id_subkategori]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=id_supplier]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=stock]').focus();
         $.get(url)
             .done((response)=>{
-                $('#modal-form [name=nama_kategori]').val(response.nama_kategori);
-                $('#modal-form [name=sub_kategori]').val(response.sub_kategori);
+                $('#modal-form [name=kode_produk]').val(response.kode_produk);
+                $('#modal-form [name=nama_produk]').val(response.nama_produk);
+                $('#modal-form [name=id_kategori]').val(response.id_kategori);
+                $('#modal-form [name=id_subkategori]').val(response.id_subkategori);
+                $('#modal-form [name=id_supplier]').val(response.id_supplier);
+                $('#modal-form [name=stock]').val(response.stock);
             })
             .fail((errors)=>{
                 alert('Tidak dapat menampilkan data');

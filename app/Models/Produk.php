@@ -12,4 +12,10 @@ class Produk extends Model
     protected $table = 'produk';
     protected $primaryKey = "id_produk";
     protected $quarded = [];
+    protected $fillable = ['sub_kategori'];
+
+    public function supplier(){
+        return $this->hasOne(Supplier::class, 'id_supplier', 'id_supplier');
+    }
 }
+

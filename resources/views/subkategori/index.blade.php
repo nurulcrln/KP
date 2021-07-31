@@ -45,7 +45,7 @@
             },
             columns: [
             {data: 'DT_RowIndex', searchable: false, sortable: false},
-            {data: 'id_kategori'}, 
+            {data: 'nama_kategori'}, 
             {data: 'sub_kategori'},
             {data: 'aksi', searchable: false, sortable: false},
             ]

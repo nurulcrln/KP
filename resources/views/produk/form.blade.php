@@ -10,6 +10,13 @@
                 <h4 class="modal-title" ></h4>
             </div>
             <div class="modal-body">
+                 <div class="form-group row">
+                    <label for="kode_produk" class="col-md-2 col-md-offset-1 control-label">Kode Produk</label>
+                    <div class="col-md-6">
+                        <input type="text" name="kode_produk" id="kode_produk" class="form-control" required autofocus>
+                        <span class="help-block with-errors"></span> 
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label for="nama_produk" class="col-md-2 col-md-offset-1 control-label">Nama Produk</label>
                     <div class="col-md-6">
@@ -18,9 +25,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                <label for="sub_kategori" class="col-md-2 col-md-offset-1 control-label">Kategori</label>
+                <label for="id_kategori" class="col-md-2 col-md-offset-1 control-label">Kategori</label>
                     <div class="col-md-6">
-                        <select name="kategori" id="kategori" class="form-control">
+                        <select name="id_kategori" id="id_kategori" class="form-control">
                             <option value="">Pilih Kategori</option>
                             @foreach ($kategori as $key => $item)
                                 <option value="{{ $key }}">{{ $item }}</option>
@@ -30,17 +37,33 @@
                     </div> 
                 </div>
                 <div class="form-group row">
-                    <label for="supplier" class="col-md-2 col-md-offset-1 control-label">Supplier</label>
+                <label for="id_subkategori" class="col-md-2 col-md-offset-1 control-label">Sub Kategori</label>
                     <div class="col-md-6">
-                        <input type="text" name="supplier" id="supplier" class="form-control" required autofocus>
-                        <button onclick="addForm('{{ route('produk.store')}}')" class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i></button>
+                        <select name="id_subkategori" id="id_subkategori" class="form-control">
+                            <option value="">Pilih Sub Kategori</option>
+                            @foreach ($subkategori as $key1 => $item2)
+                                <option value="{{ $key1 }}">{{ $item2 }}</option>
+                            @endforeach
+                        </select>
                         <span class="help-block with-errors"></span> 
-                    </div>
+                    </div> 
+                </div>
+                <div class="form-group row">
+                <label for="id_supplier" class="col-md-2 col-md-offset-1 control-label">Supplier</label>
+                    <div class="col-md-6">
+                        <select name="id_supplier" id="id_supplier" class="form-control">
+                            <option value="">Pilih Supplier</option>
+                            @foreach ($supplier as $key2 => $item3)
+                                <option value="{{ $key2 }}">{{ $item3 }}</option>
+                            @endforeach
+                        </select>
+                        <span class="help-block with-errors"></span> 
+                    </div> 
                 </div>
                 <div class="form-group row">
                     <label for="stock" class="col-md-2 col-md-offset-1 control-label">Stock</label>
                     <div class="col-md-6">
-                        <input type="number" name="stok" id="stok" class="form-control" required value="0">
+                        <input type="number" name="stock" id="stock" class="form-control" required value="0">
                         <span class="help-block with-errors"></span> 
                     </div>
                 </div>
