@@ -95,23 +95,7 @@ Tranksaksi
 <script>
     let table;
 
-    $(function () {
-        table = $('.table').DataTable({
-            // processing: true,
-            // autoWidth: false,
-            {
-                // tag html
-            }
-            ajax: {
-                method: 'post'
-                url: '{{ route ('
-                penjualan.data ') }}'
-                data: {
-                    '_token': '{{csrf_token()}}'
-                }
-                success: function (penjualan);
-            }
-        })
+    
 
         $('#modal-form').validator().on('submit', function (e) {
             if (!e.preventDefault()) {
