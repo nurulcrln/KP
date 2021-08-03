@@ -15,8 +15,8 @@ class CreateForeignKeyKodeProdukToPenjualanTable extends Migration
     {
         Schema::table('penjualan', function (Blueprint $table) {
             $table->unsignedInteger('kode_produk')->change();
-            $table->foreign('id_produk')
-                  ->references('kode_produk')
+            $table->foreign('kode_produk')
+                  ->references('id_produk')
                   ->on('produk')
                   ->onUpdate('restrict')
                   ->onDelete('restrict');

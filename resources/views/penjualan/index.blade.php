@@ -50,7 +50,7 @@ Tranksaksi
 </div>
 <div class="row">
     <div class="col-md-4">
-        <div class="box box-primary">
+        <div class="box box-primary" id="modal-form">
             <div class="box-header with-border">
                 <h3 class="box-title">Add List Produk</h3>
             </div>
@@ -58,9 +58,16 @@ Tranksaksi
             <!-- form start -->
             <form role="form">
                 <div class="box-body">
+
                     <div class="form-group">
-                        <label for="customer">Kode Barang</label>
-                        <input type="text" class="form-control" id="id_customer" nama="customer">
+                        <label for="customer">Kode Produk</label>
+                        <select name="id_produk" id="id_produk" class="form-control">
+                            <option value="">Pilih Produk</option>
+                            @foreach ($produk as $key => $item)
+                            <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+  
                     </div>
                     <div class="form-group">
                         <label for="customer">harga</label>
@@ -123,57 +130,85 @@ Tranksaksi
 <script>
     let table;
 
-    $(function () {
-        table = $('.table').DataTable({
-            // processing: true,
-            // autoWidth: false,
-            {
-                // tag html
-            }
-            ajax: {
-                method: 'post'
-                url: '{{ route ('
-                penjualan.data ') }}'
-                data: {
-                    '_token': '{{csrf_token()}}'
-                }
-                success: function (penjualan);
-            }
-        })
 
-        $('#modal-form').validator().on('submit', function (e) {
-            if (!e.preventDefault()) {
-                $.ajax({
-                        url: $('#modal-form').attr('action'),
-                        type: 'post',
-                        data: $('#modal-form').serialize(),
-                    })
-                    .done((response) => {
-                        $('#modal-form').modal('hide');
-                        table.ajax.reload();
-                    })
-                    .fail((errors) => {
-                        alert('tidak dapat menyimpan data');
-                        return;
-                    });
-            }
-        })
+    table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false,
+        ajax: {
+            url: '{{ route('
+            penjualan.data ')}}',
+        },
+        columns: [{
+                data: 'DT_RowIndex',
+                searchable: false,
+                sortable: false
+            },
+            {
+                data: 'kode_produk'
+            },
+            {
+                data: 'harga'
+            },
+            {
+                data: 'jumlah'
+            },
+            {
+                data: 'sub_total'
+            },
+            {
+                data: 'aksi',
+                searchable: false,
+                sortable: false
+            },
+        ]
+    });
+
+    $('#modal-form').validator().on('submit', function (e) {
+    if (!e.preventDefault()) {
+        $.ajax({
+                url: $('#modal-form').attr('action'),
+                type: 'post',
+                data: $('#modal-form').serialize(),
+            })
+            .done((response) => {
+                $('#modal-form').modal('hide');
+                table.ajax.reload();
+            })
+            .fail((errors) => {
+                alert('tidak dapat menyimpan data');
+                return;
+            });
+    }
+    })
     })
 
     function addForm(url) {
-        $('#modal-form').modal('show');
-        $('#modal-form .modal title').text('Tambah transaksi');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=kode_barang]').focus();
-        $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=nama_barang]').focus();
+        $('#modal-form [name=kode_produk]').focus();
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=harga]').focus();
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=jumlah]').focus();
+    }
+
+    function deleteData(url) {
+        if (confirm('Yakin ingin menghapus data?')) {
+            $.post(url, {
+                    '_token': $('[name=csrf-token]').attr('content'),
+                    '_method': 'delete'
+                })
+                .done((response) => {
+                    table.ajax.reload();
+                })
+                .fail((errors) => {
+                    alert('Tidak dapat menghapus data');
+                    return;
+                })
+        }
+
     }
 
 </script>
