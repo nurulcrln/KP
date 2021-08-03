@@ -33,6 +33,17 @@ Tranksaksi
                         <label for="customer">Customer</label>
                         <input type="text" class="form-control" id="id_customer" nama="customer">
                     </div>
+                    <label for="email">Opsi Pembayaran :</label>
+                    <div class="form-group">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="cash">Cash
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="credit">Credit
+                        </label>
+                    </div>
             </form>
         </div>
     </div>
@@ -69,24 +80,42 @@ Tranksaksi
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-body table-responsive">
-                <table class="table table-striped table-bordered w-100">
-                    <thead>
-                        <<th style="width:6%">No</th>
-                        <th>No invoice</th>
-                        <th>Nama Customer</th>
-                        <th>Total Tagihan</th>
-                        <th>Status Transaksi</th>
-                        <th style="width:15%"><i class="fa fa-cog"></i></th>
-                    </thead>
-                    <tbody id='penjualan'></tbody>
-                </table>
+    <!-- left column -->
+    <div class="col-md-3">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h1 class="box-title">No Invoice</h1>
             </div>
+
         </div>
     </div>
+    <button type="button" class="btn btn-danger">Proses</button>
+
+
 </div>
+
+
+
+<div class="col-md-12">
+    <div class="box">
+        <div class="box-body table-responsive">
+            <table class="table table-striped table-bordered w-100">
+                <thead>
+                    <th style="width:6%">No</th>
+                    <th>Kode Barang</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Sub total</th>
+                    <th style="width:15%"><i class="fa fa-cog"></i></th>
+                </thead>
+                <tbody id='penjualan'></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
 @includeIf('penjualan.form')
 @endsection
 
@@ -102,12 +131,13 @@ Tranksaksi
                 // tag html
             }
             ajax: {
-                method : 'post'
-                url: '{{ route ('penjualan.data') }}'
-                data : {
-                    '_token':'{{csrf_token()}}'
+                method: 'post'
+                url: '{{ route ('
+                penjualan.data ') }}'
+                data: {
+                    '_token': '{{csrf_token()}}'
                 }
-                success : function(penjualan);
+                success: function (penjualan);
             }
         })
 

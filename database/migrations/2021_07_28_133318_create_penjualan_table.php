@@ -14,7 +14,15 @@ class CreatePenjualanTable extends Migration
     public function up()
     {
         Schema::create('penjualan', function (Blueprint $table) {
-            $table->id();
+            $table->string('no_invoice');
+            $table->date('date');
+            $table->string('customer');
+            $table->string('opsi_pembayaran');
+            $table->string('kode_produk');
+            $table->double('harga');
+            $table->string('jumlah');
+            $table->double('sub_total');
+            $table->double('total_pembayaran');
             $table->timestamps();
         });
     }
