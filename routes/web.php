@@ -5,6 +5,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\penjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/subkategori', SubKategoriController::class);
     Route::get('/produk/data', [ProdukController::class, 'data'])->name('produk.data');
     Route::resource('/produk', ProdukController::class);
-    Route::get('/penjualan/data', [PenjualanController::class, 'data'])->name('penjualan.data');
-    Route::resource('/penjualan', PenjualanController::class);
+    Route::get('/penjualan/data', [penjualanController::class, 'data'])->name('penjualan.data');
+    Route::resource('/penjualan', penjualanController::class);
 });

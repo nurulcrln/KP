@@ -17,6 +17,11 @@ class PenjualanController extends Controller
         return view('penjualan.index');
     }
 
+
+    public function data()
+    {
+        $penjualan = Penjualan::get();
+    }
     /**
      * Show the form for creating a new resource.
      *
