@@ -33,7 +33,6 @@ Tranksaksi
                         <label for="customer">Customer</label>
                         <input type="text" class="form-control" id="id_customer" nama="customer">
                     </div>
-<<<<<<< HEAD
                     <label for="email">Opsi Pembayaran :</label>
                     <div class="form-group">
                         <label class="form-check-label">
@@ -45,20 +44,13 @@ Tranksaksi
                             <input type="radio" class="form-check-input" name="credit">Credit
                         </label>
                     </div>
-=======
-                    
->>>>>>> master
             </form>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-4">
-<<<<<<< HEAD
         <div class="box box-primary" id="modal-form">
-=======
-        <div class="box box-primary">
->>>>>>> master
             <div class="box-header with-border">
                 <h3 class="box-title">Add List Produk</h3>
             </div>
@@ -66,7 +58,6 @@ Tranksaksi
             <!-- form start -->
             <form role="form">
                 <div class="box-body">
-<<<<<<< HEAD
 
                     <div class="form-group">
                         <label for="customer">Kode Produk</label>
@@ -91,31 +82,11 @@ Tranksaksi
                             class="btn btn-primary">Add</button>
                     </div>
 
-=======
-                    <div class="form-group">
-                        <label for="customer">Kode Barang</label>
-                        <input type="text" class="form-control" id="id_customer" nama="customer">
-                    </div>
-                    <div class="form-group">
-                        <label for="customer">harga</label>
-                        <input type="text" class="form-control" id="harga" nama="harga">
-                    </div>
-                    <div class="form-group">
-                        <label for="customer">jumlah</label>
-                        <input type="number" class="form-control" id="jumlah" nama="jumlah">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" onclick="addForm('{{ route('penjualan.store')}}')"
-                            class="btn btn-primary">Add</button>
-                    </div>
-
->>>>>>> master
             </form>
         </div>
     </div>
 </div>
 <div class="row">
-<<<<<<< HEAD
     <!-- left column -->
     <div class="col-md-3">
         <!-- general form elements -->
@@ -152,26 +123,6 @@ Tranksaksi
     </div>
 </div>
 
-=======
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-body table-responsive">
-                <table class="table table-striped table-bordered w-100">
-                    <thead>
-                        <<th style="width:6%">No</th>
-                            <th>No invoice</th>
-                            <th>Nama Customer</th>
-                            <th>Total Tagihan</th>
-                            <th>Status Transaksi</th>
-                            <th style="width:15%"><i class="fa fa-cog"></i></th>
-                    </thead>
-                    <tbody id='penjualan'></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
->>>>>>> master
 @includeIf('penjualan.form')
 @endsection
 
@@ -179,78 +130,7 @@ Tranksaksi
 <script>
     let table;
 
-<<<<<<< HEAD
-
-    table = $('.table').DataTable({
-        processing: true,
-        autoWidth: false,
-        ajax: {
-            url: '{{ route('
-            penjualan.data ')}}',
-        },
-        columns: [{
-                data: 'DT_RowIndex',
-                searchable: false,
-                sortable: false
-            },
-            {
-                data: 'kode_produk'
-            },
-            {
-                data: 'harga'
-            },
-            {
-                data: 'jumlah'
-            },
-            {
-                data: 'sub_total'
-            },
-            {
-                data: 'aksi',
-                searchable: false,
-                sortable: false
-            },
-        ]
-    });
-
-    $('#modal-form').validator().on('submit', function (e) {
-    if (!e.preventDefault()) {
-        $.ajax({
-                url: $('#modal-form').attr('action'),
-                type: 'post',
-                data: $('#modal-form').serialize(),
-            })
-            .done((response) => {
-                $('#modal-form').modal('hide');
-                table.ajax.reload();
-            })
-            .fail((errors) => {
-                alert('tidak dapat menyimpan data');
-                return;
-            });
-    }
-    })
-    })
-
-    function addForm(url) {
-=======
-    $(function () {
-        table = $('.table').DataTable({
-            // processing: true,
-            // autoWidth: false,
-            {
-                // tag html
-            }
-            ajax: {
-                method: 'post'
-                url: '{{ route ('
-                penjualan.data ') }}'
-                data: {
-                    '_token': '{{csrf_token()}}'
-                }
-                success: function (penjualan);
-            }
-        })
+    
 
         $('#modal-form').validator().on('submit', function (e) {
             if (!e.preventDefault()) {
@@ -274,25 +154,17 @@ Tranksaksi
     function addForm(url) {
         $('#modal-form').modal('show');
         $('#modal-form .modal title').text('Tambah transaksi');
->>>>>>> master
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
-<<<<<<< HEAD
         $('#modal-form [name=kode_produk]').focus();
-=======
-        $('#modal-form [name=kode_barang]').focus();
-        $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=nama_barang]').focus();
->>>>>>> master
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=harga]').focus();
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=jumlah]').focus();
     }
 
-<<<<<<< HEAD
     function deleteData(url) {
         if (confirm('Yakin ingin menghapus data?')) {
             $.post(url, {
@@ -310,7 +182,5 @@ Tranksaksi
 
     }
 
-=======
->>>>>>> master
 </script>
 @endpush

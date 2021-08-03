@@ -4,10 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SubKategoriController;
-<<<<<<< HEAD
-=======
-use App\Http\Controllers\SupplierController;
->>>>>>> master
 use App\Http\Controllers\penjualanController;
 
 /*

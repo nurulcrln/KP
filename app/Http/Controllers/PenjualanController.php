@@ -39,11 +39,6 @@ class penjualanController extends Controller
         ->make(true);
     }
 
-
-    public function data()
-    {
-        $penjualan = Penjualan::get();
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -101,10 +96,7 @@ class penjualanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $penjualan = Penjualan::create($request->all());
-        $penjualan->update();
-
-        return response()->json('Data berhasil disimpan', 200);
+        
     }
 
     /**
@@ -115,9 +107,6 @@ class penjualanController extends Controller
      */
     public function destroy($id)
     {
-        $penjualan = Penjualan::find($id);
-        $penjualan->delete();
-
-        return response(null, 204);
+        //
     }
 }
