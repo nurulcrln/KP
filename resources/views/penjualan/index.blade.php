@@ -72,16 +72,16 @@ Tranksaksi
     <div class="col-md-12">
         <div class="box">
             <div class="box-body table-responsive">
-                <table class="table table-stiped table-bordered">
+                <table class="table table-striped table-bordered w-100">
                     <thead>
-                        <th width="6%">No</th>
+                        <<th style="width:6%">No</th>
                         <th>No invoice</th>
                         <th>Nama Customer</th>
                         <th>Total Tagihan</th>
                         <th>Status Transaksi</th>
-                        <th width="15%"><i class="fa fa-cog"></i></th>
+                        <th style="width:15%"><i class="fa fa-cog"></i></th>
                     </thead>
-                    <tbody></tbody>
+                    <tbody id='penjualan'></tbody>
                 </table>
             </div>
         </div>
@@ -96,28 +96,36 @@ Tranksaksi
 
     $(function () {
         table = $('.table').DataTable({
-            processing: true,
-            autoWidth: false,
-            // ajax: {
-            //     url: '{{ route ('penjualan.data') }}'
-            // }
+            // processing: true,
+            // autoWidth: false,
+            {
+                // tag html
+            }
+            ajax: {
+                method : 'post'
+                url: '{{ route ('penjualan.data') }}'
+                data : {
+                    '_token':'{{csrf_token()}}'
+                }
+                success : function(penjualan);
+            }
         })
 
         $('#modal-form').validator().on('submit', function (e) {
-            if (! e.preventDefault()) {
+            if (!e.preventDefault()) {
                 $.ajax({
-                    url: $('#modal-form').attr('action'),
-                    type: 'post',
-                    data: $('#modal-form').serialize(),
-                })
-                .done((response) =>{
-                    $('#modal-form').modal('hide');
-                    table.ajax.reload();
-                })
-                .fail((errors) => {
-                    alert ('tidak dapat menyimpan data');
-                    return;
-                });
+                        url: $('#modal-form').attr('action'),
+                        type: 'post',
+                        data: $('#modal-form').serialize(),
+                    })
+                    .done((response) => {
+                        $('#modal-form').modal('hide');
+                        table.ajax.reload();
+                    })
+                    .fail((errors) => {
+                        alert('tidak dapat menyimpan data');
+                        return;
+                    });
             }
         })
     })
@@ -125,13 +133,16 @@ Tranksaksi
     function addForm(url) {
         $('#modal-form').modal('show');
         $('#modal-form .modal title').text('Tambah transaksi');
-        
+
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=kode_barang]').focus();
+        $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=nama_barang]').focus();
+        $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=harga]').focus();
+        $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=jumlah]').focus();
     }
 
