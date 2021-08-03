@@ -76,7 +76,7 @@
 
     function editForm(url){
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Add Kategori');
+        $('#modal-form .modal-title').text('Edit Kategori');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);

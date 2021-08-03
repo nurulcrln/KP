@@ -20,7 +20,7 @@
         </li>
         <li class="header">PRODUK</li>
         <li>
-          <a href="#">
+          <a href="{{ route('supplier.index')}}">
             <i class="fa fa-cubes"></i> <span>Supplier</span>
           </a>
         </li>

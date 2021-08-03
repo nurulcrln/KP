@@ -21,17 +21,18 @@ class SubKategoriController extends Controller
 
     public function data()
     {
-        $subkategori = SubKategori::orderBy('id_subkategori', 'desc')->get();
+        $subkategori = SubKategori::leftJoin('kategori', 'kategori.id_kategori', 'subkategori.id_kategori')
+            ->select('subkategori.*', 'nama_kategori')
+            ->orderBy('id_kategori', 'asc')
+            ->get();
 
         return datatables()
             ->of($subkategori)
             ->addIndexColumn()
             ->addColumn('aksi', function ($subkategori){
                 return '
-                <div class="btn-group">
                     <button onclick="editForm(`'. route('subkategori.update', $subkategori->id_subkategori) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-edit"></i></button> 
                     <button onclick="deleteData(`'. route('subkategori.destroy', $subkategori->id_subkategori) .'`)"class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button> 
-                </div>
                 ';
             })
             ->rawColumns(['aksi'])

@@ -39,6 +39,11 @@ class penjualanController extends Controller
         ->make(true);
     }
 
+
+    public function data()
+    {
+        $penjualan = Penjualan::get();
+    }
     /**
      * Show the form for creating a new resource.
      *

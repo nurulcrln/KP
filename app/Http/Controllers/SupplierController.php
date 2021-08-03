@@ -16,7 +16,23 @@ class SupplierController extends Controller
     {
         return view('supplier.index');
     }
+    public function data()
+    {
+        $supplier = Supplier::orderBy('id_supplier', 'desc')->get();
 
+        return datatables()
+            ->of($supplier)
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($supplier){
+                return '
+                    <button onclick="editForm(`'. route('supplier.update', $supplier->id_supplier) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-edit"></i></button> 
+                    <button onclick="deleteData(`'. route('supplier.destroy', $supplier->id_supplier) .'`)"class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button> 
+                ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
+        
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +51,14 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = new Supplier();
+        $supplier-> name = $request->name;
+        $supplier-> phone = $request->phone;
+        $supplier-> address = $request->address;
+        $supplier-> description = $request->description;
+        $supplier->save();
+
+        return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
@@ -46,7 +69,9 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        //
+        $supplier = Supplier::find($id);
+
+        return response()->json($supplier);
     }
 
     /**
@@ -69,7 +94,14 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $supplier = Supplier::find($id);
+        $supplier-> name = $request->name;
+        $supplier-> phone = $request->phone;
+        $supplier-> address = $request->address;
+        $supplier-> description = $request->description;
+        $supplier->update();
+
+        return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
@@ -80,6 +112,9 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $supplier = Supplier::find($id);
+        $supplier->delete();
+
+        return response(null, 204);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Penjualan extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
     
     protected $table = 'penjualan';
     protected $quarded = [];
@@ -17,4 +18,9 @@ class Penjualan extends Model
     // public function supplier(){
     //     return $this->hasOne(Supplier::class, 'id_supplier', 'id_supplier');
     // }
+=======
+
+    protected $table = 'penjualan';
+    protected $quarded = [];
+>>>>>>> master
 }
