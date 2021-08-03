@@ -96,7 +96,10 @@ class penjualanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $penjualan = Penjualan::create($request->all());
+        $penjualan->update();
+
+        return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
