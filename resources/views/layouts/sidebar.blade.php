@@ -39,7 +39,13 @@
             <i class="fa fa-cubes"></i> <span>Item</span>
           </a>
         </li>
+        
         <li class="header">TRANKSAKSI</li>
+        <li>
+          <a href="{{ route('customer.index')}}">
+            <i class="fa fa-file"></i> <span>Customer</span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="form.blade.php">
           <i class="fa fa-cart-arrow-down"></i>
