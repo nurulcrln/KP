@@ -88,6 +88,8 @@
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=id_supplier]').focus();
         $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=harga]').focus();
+        $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=stock]').focus();
     }
 
@@ -108,6 +110,8 @@
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=id_supplier]').focus();
         $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=id_harga]').focus();
+        $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=stock]').focus();
         $.get(url)
             .done((response)=>{
@@ -116,6 +120,7 @@
                 $('#modal-form [name=id_kategori]').val(response.id_kategori);
                 $('#modal-form [name=id_subkategori]').val(response.id_subkategori);
                 $('#modal-form [name=id_supplier]').val(response.id_supplier);
+                $('#modal-form [name=harga]').val(response.harga);
                 $('#modal-form [name=stock]').val(response.stock);
             })
             .fail((errors)=>{

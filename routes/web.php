@@ -5,6 +5,11 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransaksiDetailController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\PenjualanDetailController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +37,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/subkategori', SubKategoriController::class);
     Route::get('/produk/data', [ProdukController::class, 'data'])->name('produk.data');
     Route::resource('/produk', ProdukController::class);
+    Route::get('/transaksi/data', [TransaksiController::class, 'data'])->name('transaksi.data');
+    Route::resource('/transaksi', TransaksiController::class);
+    Route::get('/customer/data', [CustomerController::class, 'data'])->name('customer.data');
+    Route::resource('/customer', CustomerController::class);
+    
     Route::get('/penjualan/data', [PenjualanController::class, 'data'])->name('penjualan.data');
-    Route::resource('/penjualan', PenjualanController::class);
+        Route::get('/penjualan/{id}/create', [PenjualanController::class, 'create'])->name('penjualan.create');
+        Route::resource('/penjualan', PenjualanController::class)
+            ->except('create');
+
+        Route::get('/penjualan_detail/{id}/data', [PenjualanDetailController::class, 'data'])->name('penjualan_detail.data');
+        Route::get('/penjualan_detail/loadform/{diskon}/{total}', [PenjualanDetailController::class, 'loadForm'])->name('penjualan_detail.load_form');
+        Route::resource('/penjualan_detail', PenjualanDetailController::class)
+            ->except('create', 'show', 'edit');
+
 });

@@ -40,6 +40,11 @@
           </a>
         </li>
         <li class="header">TRANKSAKSI</li>
+        <li>
+          <a href="{{ route('customer.index')}}">
+            <i class="fa fa-cubes"></i> <span>Customer</span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="form.blade.php">
           <i class="fa fa-cart-arrow-down"></i>
@@ -63,8 +68,8 @@
           </a>
           <ul class="treeview-menu">
 
-            <li><<a href="{{ route('penjualan.index')}}"><i class="fa fa-circle-o"></i> Add Penjualan</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Riwayat Penjualan</a></li>
+            <!-- <li><<a href="{{ route('transaksi.index')}}"><i class="fa fa-circle-o"></i>Penjualan</a></li> -->
+            <li><a href="{{ route('penjualan.index')}}"><i class="fa fa-circle-o"></i>Penjualan</a></li>
           </ul>
         </li>
 

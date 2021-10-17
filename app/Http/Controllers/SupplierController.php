@@ -55,7 +55,7 @@ class SupplierController extends Controller
         $supplier-> name = $request->name;
         $supplier-> phone = $request->phone;
         $supplier-> address = $request->address;
-        $supplier-> description = $request->description;
+        $supplier-> rekening = $request->rekening;
         $supplier->save();
 
         return response()->json('Data berhasil disimpan', 200);
@@ -98,7 +98,7 @@ class SupplierController extends Controller
         $supplier-> name = $request->name;
         $supplier-> phone = $request->phone;
         $supplier-> address = $request->address;
-        $supplier-> description = $request->description;
+        $supplier-> rekening = $request->rekening;
         $supplier->update();
 
         return response()->json('Data berhasil disimpan', 200);

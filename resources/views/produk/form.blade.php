@@ -61,6 +61,13 @@
                     </div> 
                 </div>
                 <div class="form-group row">
+                    <label for="harga" class="col-md-2 col-md-offset-1 control-label">Harga</label>
+                    <div class="col-md-6">
+                        <input type="text" name="harga" id="harga" class="form-control" required autofocus>
+                        <span class="help-block with-errors"></span> 
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="stock" class="col-md-2 col-md-offset-1 control-label">Stock</label>
                     <div class="col-md-6">
                         <input type="number" name="stock" id="stock" class="form-control" required value="0">

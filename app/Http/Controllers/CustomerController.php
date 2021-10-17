@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SubKategori;
-use App\Models\Kategori;
+use App\Models\Customer;
 
-class SubKategoriController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,25 +13,20 @@ class SubKategoriController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        $kategori = Kategori::all()->pluck('nama_kategori', 'id_kategori');
-        return view('subkategori.index', compact('kategori'));
+    {
+        return view('customer.index');
     }
-
     public function data()
     {
-        $subkategori = SubKategori::leftJoin('kategori', 'kategori.id_kategori', 'subkategori.id_kategori')
-            ->select('subkategori.*', 'nama_kategori')
-            ->orderBy('id_kategori', 'asc')
-            ->get();
+        $customer = Customer::orderBy('id_customer', 'desc')->get();
 
         return datatables()
-            ->of($subkategori)
+            ->of($customer)
             ->addIndexColumn()
-            ->addColumn('aksi', function ($subkategori){
+            ->addColumn('aksi', function ($customer){
                 return '
-                    <button onclick="editForm(`'. route('subkategori.update', $subkategori->id_subkategori) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-edit"></i></button> 
-                    <button onclick="deleteData(`'. route('subkategori.destroy', $subkategori->id_subkategori) .'`)"class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button> 
+                    <button onclick="editForm(`'. route('customer.update', $customer->id_customer) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-edit"></i></button> 
+                    <button onclick="deleteData(`'. route('customer.destroy', $customer->id_customer) .'`)"class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button> 
                 ';
             })
             ->rawColumns(['aksi'])
@@ -57,10 +51,13 @@ class SubKategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $subkategori = new SubKategori();
-        $subkategori-> id_kategori = $request->id_kategori;
-        $subkategori-> sub_kategori = $request->sub_kategori;
-        $subkategori->save();
+        $customer = new Customer();
+        $customer-> name = $request->name;
+        $customer->rekening = $request->rekening;
+        $customer-> email = $request->email;
+        $customer-> phone = $request->phone;
+        $customer-> address = $request->address;
+        $customer->save();
 
         return response()->json('Data berhasil disimpan', 200);
     }
@@ -73,9 +70,9 @@ class SubKategoriController extends Controller
      */
     public function show($id)
     {
-        $subkategori = SubKategori::find($id);
+        $customer = Customer::find($id);
 
-        return response()->json($subkategori);
+        return response()->json($customer);
     }
 
     /**
@@ -98,10 +95,13 @@ class SubKategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $subkategori = SubKategori::find($id);
-        $subkategori-> id_kategori = $request->id_kategori;
-        $subkategori-> sub_kategori = $request->sub_kategori;
-        $subkategori->update();
+        $customer = Customer::find($id);
+        $customer-> name = $request->name;
+        $customer-> rekening = $request->rekening;
+        $customer-> email = $request->email;
+        $customer-> phone = $request->phone;
+        $customer-> address = $request->address;
+        $customer->update();
 
         return response()->json('Data berhasil disimpan', 200);
     }
@@ -114,8 +114,8 @@ class SubKategoriController extends Controller
      */
     public function destroy($id)
     {
-        $subkategori = SubKategori::find($id);
-        $subkategori->delete();
+        $customer = Customer::find($id);
+        $customer->delete();
 
         return response(null, 204);
     }

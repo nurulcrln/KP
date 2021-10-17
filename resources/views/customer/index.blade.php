@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('title')
-    Supplier
+    Customer
 @endsection
 
 @section('breadcrumb')
     @parent
-    <li class="active">Supplier</li>
+    <li class="active">Customer</li>
 @endsection
 
 @section('content')
@@ -14,16 +14,17 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-header with border">
-                <button onclick="addForm('{{ route('supplier.store')}}')" class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i>Add</button>
+                <button onclick="addForm('{{ route('customer.store')}}')" class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i>Add</button>
             </div>
             <div class="box-body table-responsive">
                 <table class="table table-stiped table-bordered">
                     <thead>
                         <th width="5%">No</th>
-                        <th>Nama Supplier</th>
-                        <th>No. Telp</th>
+                        <th>Nama Customer</th>
+                        <th>Email</th>
+                        <th>No. Telepon</th>
+                        <th>No. Rekening</th>
                         <th>Alamat</th>
-                        <th>Rekening</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -31,7 +32,7 @@
         </div>
     </div>
 </div>
-@includeIf('supplier.form')
+@includeIf('customer.form')
 @endsection
 
 @push('scripts')
@@ -43,14 +44,15 @@
             processing: true,
             autoWidth: false,
             ajax: {
-                url: '{{ route('supplier.data')}}',
+                url: '{{ route('customer.data')}}',
             },
             columns: [
             {data: 'DT_RowIndex', searchable: false, sortable: false},
-            {data: 'name'}, 
+            {data: 'name'},
+            {data: 'email'},
             {data: 'phone'},
-            {data: 'address'},
             {data: 'rekening'},
+            {data: 'address'}, 
             {data: 'aksi', searchable: false, sortable: false},
             ]
         });
@@ -72,18 +74,20 @@
 
     function addForm(url){
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Add Supplier');
+        $('#modal-form .modal-title').text('Add Customer');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=name]').focus();
         $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=rekening]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=email]').focus();
+        $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=phone]').focus();
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=address]').focus();
-        $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=rekening]').focus();
     }
 
     function editForm(url){
@@ -94,19 +98,22 @@
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('put');
         $('#modal-form [name=name]').focus();
-        $('#modal-form [name=_method]').val('put');
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=rekening]').focus();
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=email]').focus();
+        $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=phone]').focus();
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=address]').focus();
-        $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=rekening]').focus();
 
         $.get(url)
             .done((response)=>{
                 $('#modal-form [name=name]').val(response.name);
+                $('#modal-form [name=rekening]').val(response.rekening);
+                $('#modal-form [name=email]').val(response.email);
                 $('#modal-form [name=phone]').val(response.phone);
                 $('#modal-form [name=address]').val(response.address);
-                $('#modal-form [name=rekening]').val(response.rekening);
             })
             .fail((errors)=>{
                 alert('Tidak dapat menampilkan data');

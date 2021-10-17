@@ -33,7 +33,6 @@ class ProdukController extends Controller
         return datatables()
             ->of($produk)
             ->addIndexColumn()
-
             ->addColumn('aksi', function ($produk){
                 return '
                     <button onclick="editForm(`'. route('produk.update', $produk->id_produk) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-edit"></i></button> 
@@ -84,6 +83,7 @@ class ProdukController extends Controller
         $produk-> id_kategori = $request->id_kategori;
         $produk-> id_subkategori = $request->id_subkategori;
         $produk-> id_supplier = $request->id_supplier;
+        $produk-> harga = $request->harga;
         $produk-> stock = $request->stock;
         $produk->save();
 
@@ -129,6 +129,7 @@ class ProdukController extends Controller
         $produk-> id_kategori = $request->id_kategori;
         $produk-> id_subkategori = $request->id_subkategori;
         $produk-> id_supplier = $request->id_supplier;
+        $produk-> harga = $request->harga;
         $produk-> stock = $request->stock;
         $produk->update();
 
